@@ -1130,9 +1130,12 @@ CMD_PROC(errortest)
      uint32_t pixels = 0;
      uint32_t errors = 0;
 
-     tb.Daq_Open(10000,1);
+     int tbmch = roc/8; // 0 or 1
 
-     tb.Daq_Start(1);
+
+     tb.Daq_Open(10000,tbmch);
+
+     tb.Daq_Start(tbmch);
      tb.uDelay(100);
 
      for(int it = 0 ; it < iterations ; it ++)
@@ -1142,7 +1145,7 @@ CMD_PROC(errortest)
 
         uint32_t remaining = 0;
 
-        tb.Daq_Read( data, 32000, remaining ,1 );
+        tb.Daq_Read( data, 32000, remaining ,tbmch );
 
         int size = data.size();
 
@@ -1186,7 +1189,7 @@ CMD_PROC(errortest)
      }
      tb.roc_ClrCal();
 
-     tb.Daq_Stop(1);
+     tb.Daq_Stop(tbmch);
 
      tb.Daq_Close();
 
