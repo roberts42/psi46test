@@ -12,7 +12,7 @@ endif
 ifeq ($(UNAME), Linux)
 CXXFLAGS = -g -Os -Wall -I/usr/local/include -I/usr/X11/include -pthread `root-config --cflags`
 # CXXFLAGS = -g -Os -Wall -Werror -I/usr/local/include -Wno-logical-op-parentheses -I/usr/X11/include -pthread
-LDFLAGS = -lftd2xx -lreadline -L/usr/local/lib -L/usr/X11/lib -lX11 -pthread -lrt `root-config --glibs`
+LDFLAGS = -lftd2xx -lreadline -L/usr/local/lib -L/usr/X11/lib -lX11 -pthread -lrt -lncurses `root-config --glibs`
 endif
 
 RPCGEN = ./rpcgen/rpcgen
